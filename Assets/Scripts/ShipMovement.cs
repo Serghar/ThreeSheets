@@ -59,9 +59,9 @@ public class ShipMovement : MonoBehaviour {
         } else if (range < 105) {
             zone = 2;
         }
-        //REFACTOR: change to based on current velocity rather than current % force
-        rotSpeed = (Mathf.Abs(mods[zone] - 0.5f) * 2 + 1) * turnSpeed;
-
+        //Speed of turning is based on current velocity of the ship
+        rotSpeed = (Mathf.Abs(rb.velocity.magnitude - 10f) / 10 + 1) * turnSpeed;
+ 
         float force = power * sailSpeed * mods[zone];
         rb.AddForce(transform.forward * force);
     }
